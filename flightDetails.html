@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Check Flight Avaiablity" variant="narrow" icon-name="custom:custom14">
+        <form>
+        <div class="slds-p-around_small">
+            <lightning-input type="text" required="true" name="FROM" label="FROM" onchange={handleInputChange}  ></lightning-input>
+            <lightning-input type="text" required="true" name="TO"  label="TO" onchange={handleInputChange}  ></lightning-input>
+           
+        </div>
+        <lightning-layout>
+            <lightning-layout-item size="2">
+                <div class="slds-p-around_small slds-p-left_large">
+                <lightning-input type="text" required="true"  name="Adult" label="Number OF ADULT" onchange={handleInputChange}  ></lightning-input>
+            </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <div class="slds-p-around_small slds-p-left_large">
+                <lightning-input type="date"  required="true"  name="date" label="Select a Date" onchange={handleInputChange} ></lightning-input>
+            </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        <div class="slds-p-around_small slds-p-left_large">
+            <lightning-button label="Get flight details" variant="Brand" onclick={handleflightInfo}></lightning-button>
+            <lightning-button label="Reset" class="slds-p-around_small" onclick={Reset}></lightning-button>
+        </div>
+
+        
+        <template lwc:if = {display}>
+            <template for:each={ItinerariesDisplay} for:item="itinerary">
+                <div class="slds-box  slds-box_xx-small"   key={itinerary.id}>
+                       <p>
+                          <strong>Duration:</strong> {itinerary.duration} minutes<br />
+                          <strong>Airline:</strong> {itinerary.carrier}<br />
+                          <strong>Origin City:</strong> {itinerary.origin}<br />
+                          <strong>Destination City:</strong> {itinerary.destination}<br />
+                          <strong>Price:</strong> {itinerary.price}
+                        </p>
+                     
+                
+            </div>
+              </template>
+        </template>
+    </form>
+</lightning-card>
+</template>
